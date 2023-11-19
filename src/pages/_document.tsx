@@ -91,7 +91,7 @@ export default function Document() {
             </p>
           </header>
           <div className="cards grid">
-            <div className="card" onclick="openBookingModal('Terapia Capilar')">
+            <div className="card">
               <i className="icon-woman-hair"></i>
               <h3 className="title">Terapia capilar</h3>
               <p>
@@ -227,33 +227,6 @@ export default function Document() {
 
       <div className="divider-1"></div>
     </main>
-
-    <div id="bookingModal" className="modal">
-      <div className="modal-content agendamento-content">
-        <span className="close">&times;</span>
-        <a className="logo">Escolha um profissional para 
-          <span id="serviceTitle"></span>
-        </a>
-        <div className="professional-buttons-container">
-          <div className="professional-button">
-            <input type="radio" id="professional1" name="professional" value="Profissional 1"/>
-            <label for="professional1">Profissional 1</label>
-          </div>
-          <div className="professional-button">
-            <input type="radio" id="professional2" name="professional" value="Profissional 2"/>
-            <label for="professional2">Profissional 2</label>
-          </div>
-          <div className="professional-button">
-            <input type="radio" id="professional3" name="professional" value="Profissional 3"/>
-            <label for="professional3">Profissional 3</label>
-          </div>
-        </div>
-          <h2>Escolha um horário</h2>
-          <select id="timeSelection" name="horario"></select>
-          <button>Confirmar Agendamento</button>
-      </div>
-    </div>
-
 
     <footer className="section">
       <div className="container grid">
