@@ -8,24 +8,7 @@ export default function Home() {
         <title>Home</title>
       </Head>
       <div>
-        <header id="header" className="scroll">
-          <nav className="container">
-            <a className="logo" href="#">beauty<span>salon</span>.</a>
-            <div className="menu">
-              <ul className="grid">
-                <li><a className="title" href="#home">Início</a></li>
-                <li><a className="title" href="#about">Sobre</a></li>
-                <li><a className="title" href="#services">Serviços</a></li>
-                <li><a className="title" href="#testimonials">Depoimentos</a></li>
-                <li><a className="title" href="#contact">Contato</a></li>
-                <li><a className="title" href="#login" id="loginBtn">Login</a></li>
-
-              </ul>
-            </div>
-            <div className="toggle icon-menu"></div>
-            <div className="toggle icon-close"></div>
-          </nav>
-        </header>
+        
         <main>
           <section className="section" id="home">
             <div className="container grid">
@@ -94,39 +77,7 @@ export default function Home() {
                   exclusivos e totalmente naturais
                 </p>
               </header>
-              <div className="cards grid">
-                <div className="card">
-                  <i className="icon-woman-hair"></i>
-                  <h3 className="title">Terapia capilar</h3>
-                  <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam,
-                    quo rem! Ratione, dolorum! Praesentium quaerat ipsam recusandae
-                    porro, odio sapiente laudantium nam cupiditate dolorum at vitae
-                    mollitia obcaecati aperiam quas!
-                  </p>
-                </div>
-                <div className="card" >
-                  <i className="icon-trim"></i>
-                  <h3 className="title">Corte</h3>
-                  <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa
-                    voluptatum, animi cumque nam id illo quos exercitationem
-                    similique iusto, explicabo a nemo! Blanditiis earum
-                    reprehenderit architecto minus cum aut magni.
-                  </p>
-                </div>
-                <div className="card" >
-                  <i className="icon-cosmetic"></i>
-                  <h3 className="title">Tratamentos</h3>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Obcaecati saepe, quam id quisquam adipisci molestiae iste
-                    repudiandae deleniti numquam quibusdam, recusandae laboriosam
-                    maxime beatae voluptates neque laudantium hic provident alias?
-                  </p>
-                </div>
               </div>
-            </div>
           </section>
 
           <div className="divider-1"></div>
