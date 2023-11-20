@@ -1,15 +1,19 @@
-import Example from '@/components/example'
-import { Html, Head, Main, NextScript } from 'next/document'
 
-export default function Document() {
+import { Html, Head, Main, NextScript } from 'next/document';
+
+
+function Document() {
   return (
     <Html lang="pt-br">
-      <Example />
       <Head />
       <body>
-        <Main />
+        <main>
+          <Main />
+        </main>
         <NextScript />
       </body>
     </Html>
   )
 }
+
+export default Document;
