@@ -7,9 +7,7 @@ function Document() {
     <Html lang="pt-br">
       <Head />
       <body>
-        <main>
-          <Main />
-        </main>
+        <Main />
         <NextScript />
       </body>
     </Html>
