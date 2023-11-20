@@ -12,14 +12,22 @@
     "@headlessui/react": "^1.7.17",
     "@heroicons/react": "^2.0.18",
     "axios": "^1.6.2",
+    "chart.js": "^4.4.0",
     "next": "14.0.2",
+    "nookies": "^2.5.2",
     "react": "^18",
-    "react-dom": "^18"
+    "react-chartjs-2": "^5.2.0",
+    "react-dom": "^18",
+    "react-hook-form": "^7.48.2",
+    "sweetalert2": "^11.10.1",
+    "uuid": "^9.0.1"
   },
   "devDependencies": {
+    "@types/cookie": "^0.5.4",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "@types/uuid": "^9.0.7",
     "autoprefixer": "^10.0.1",
     "daisyui": "^4.3.1",
     "eslint": "^8",
