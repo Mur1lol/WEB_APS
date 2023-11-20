@@ -42,8 +42,6 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const apiClient = getAPIClient(ctx);
   const { ['nextauth.token']: token } = parseCookies(ctx)
 
-  console.log('TOKEN: ' + token)
-
   if (!token) {
     return {
       redirect: {

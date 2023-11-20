@@ -5,10 +5,13 @@ import Router from 'next/router'
 import { api } from "../services/api";
 import { showErrorAlert } from '@/components/swal';
 
+import { jwtDecode } from 'jwt-decode';
+
 type User = {
   id: number;
   nome: string;
   email: string;
+  tipo: string;
 }
 
 type SignInData = {
@@ -17,7 +20,7 @@ type SignInData = {
 }
 
 type AuthContextProps = {
-  usuarioLogado: number;
+  user: User | null;
   signInFuncionario: ({ email, senha }: SignInData) => Promise<void>;
   signInCliente: ({ email, senha }: SignInData) => Promise<void>;
   logout: () => void;
@@ -29,15 +32,21 @@ interface AuthProviderProps {
   children: ReactNode;
 }
 
-export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
-  const [usuarioLogado, setUsuarioLogado] = useState(0);
+const segredo = process.env.NEXT_PUBLIC_JWT_SECRET;
 
+export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
+  const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
     const { 'nextauth.token': token } = parseCookies()
-    const usuarioLogadoLocalStorage = localStorage.getItem('usuarioLogado');
-    if (token && usuarioLogadoLocalStorage) {
-      setUsuarioLogado(parseInt(usuarioLogadoLocalStorage));
+    if (token) {
+      try {
+        const user:User = jwtDecode(token);
+        setUser(user);
+      }
+      catch(error) {
+        setUser(null);
+      }
     }
   }, []);
 
@@ -46,19 +55,20 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       email,
       senha
     }).then((response) => {
+      const token = response.data.dados.token;
+
       destroyCookie(undefined, 'nextauth.token');
-      setCookie(undefined, 'nextauth.token', response.data.dados.token, {
+      setCookie(undefined, 'nextauth.token', token, {
         maxAge: 60 * 60 * 1, // 1 hour
       });
 
-      //setUser(response.data.dados.cliente);
-      setUsuarioLogado(1);
-      localStorage.setItem('usuarioLogado', '1');
+      setUser(response.data.dados.cliente);
 
-      api.defaults.headers['Authorization'] = `Bearer ${response.data.dados.token}`;  
+      api.defaults.headers['Authorization'] = `Bearer ${token}`;  
     
       Router.push('/');
     }).catch((error) => {
+      console.log(error)
       showErrorAlert(error.response.data.error);
     });
   };
@@ -73,17 +83,8 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         maxAge: 60 * 60 * 1, // 1 hour
       });
 
-      //setUser(response.data.dados.cliente);
-      if(response.data.dados.funcionario.admin) {
-        setUsuarioLogado(3);
-        localStorage.setItem('usuarioLogado', '3');
-      }
-      else {
-        setUsuarioLogado(2);
-        localStorage.setItem('usuarioLogado', '2');
-      }
-      
-  
+      setUser(response.data.dados.funcionario);
+
       api.defaults.headers['Authorization'] = `Bearer ${response.data.dados.token}`;  
     
       Router.push('/');
@@ -93,14 +94,13 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   };
 
   function logout() {
-    setUsuarioLogado(0);
-    localStorage.removeItem('usuarioLogado');
+    setUser(null);
     destroyCookie(undefined, 'nextauth.token');
     Router.push('/');
   };
 
   return (
-    <AuthContext.Provider value={{ usuarioLogado, signInFuncionario, signInCliente, logout }}>
+    <AuthContext.Provider value={{ user, signInFuncionario, signInCliente, logout }}>
       {children}
     </AuthContext.Provider>
   );
