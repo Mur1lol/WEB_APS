@@ -41,10 +41,10 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     const { 'nextauth.token': token } = parseCookies()
     if (token) {
       try {
-        const user:User = jwtDecode(token);
+        const user: User = jwtDecode(token);
         setUser(user);
       }
-      catch(error) {
+      catch (error) {
         setUser(null);
       }
     }
@@ -64,12 +64,12 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
       setUser(response.data.dados.cliente);
 
-      api.defaults.headers['Authorization'] = `Bearer ${token}`;  
-    
+      api.defaults.headers['Authorization'] = `Bearer ${token}`;
+
       Router.push('/');
     }).catch((error) => {
       console.log(error)
-      showErrorAlert(error.response.data.error);
+      showErrorAlert('Erro ao autenticar!');
     });
   };
 
@@ -85,11 +85,12 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
       setUser(response.data.dados.funcionario);
 
-      api.defaults.headers['Authorization'] = `Bearer ${response.data.dados.token}`;  
-    
+      api.defaults.headers['Authorization'] = `Bearer ${response.data.dados.token}`;
+
       Router.push('/');
     }).catch((error) => {
-      showErrorAlert(error.response.data.error);
+      console.log(error)
+      showErrorAlert('Erro ao autenticar!');
     })
   };
 

@@ -30,7 +30,7 @@ const CadastroCliente = () => {
 
     <div className="flex h-screen bg-gray-200">
       <div className="m-auto w-96 bg-white rounded p-6 shadow-md">
-        <h2 className="text-2xl font-semibold mb-6">Cadastro</h2>
+        <h2 className="text-2xl font-semibold mb-6">Cadastro Cliente</h2>
 
         <div className="mb-4">
           <label className="block text-sm font-medium text-gray-700">Nome:</label>
@@ -69,7 +69,7 @@ const CadastroCliente = () => {
         <div className="mt-4">
           <p className="text-gray-700 text-sm">
             Já possui uma conta?{' '}
-            <a href="/login" className="text-blue-500">
+            <a href="/login/cliente" className="text-blue-500">
               Faça login aqui
             </a>
           </p>
