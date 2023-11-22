@@ -2,7 +2,6 @@ import React, { useContext, useState } from 'react';
 
 import { parseCookies } from 'nookies'
 import { GetServerSideProps } from 'next'
-import Navbar from '@/components/navbar';
 import { getAPIClient } from '@/services/axios';
 
 type Agenda = {
@@ -27,23 +26,25 @@ type Agenda = {
 }
 
 type Agendamentos = {
-  dadosDaAPI: Agenda
+  dadosDaAPI: Agenda[]
 }
 
-const History = (dadosDaAPI) => {
+const History: React.FC<Agendamentos> = ( {dadosDaAPI }) => {
   // Simulação de dados de agendamentos (pode ser substituída por dados reais da sua aplicação)
-  const appointments = [
-    { date: '2023-11-20', hour: 14, status: 'passado' },
-    { date: '2023-11-25', hour: 10, status: 'futuro' },
-    { date: '2023-12-01', hour: 16, status: 'futuro' },
-    // Adicione mais agendamentos conforme necessário
-  ];
 
-  const getCurrentDate = () => new Date().toISOString().split('T')[0]; // Obtém a data atual no formato "YYYY-MM-DD"
+  const dataNormal = new Date()
+  const dataISO = dataNormal.toISOString().split('T')[0];
+  const dataBR = dataNormal.toLocaleDateString();
+  const dataBRISO = new Date(dataBR);
 
-  const teste = dadosDaAPI.dadosDaAPI;
-  const agendamentoPassado = teste.filter((agenda: Agenda) => agenda.data < getCurrentDate());
-  const agendamentoFuturo = teste.filter((agenda: Agenda) => agenda.data > getCurrentDate());
+  console.log('1: '+dataISO, '2: '+dataBR, dataBRISO)
+  const getCurrentDate = () => new Date().toISOString().split('T')[0] // Obtém a data atual no formato "YYYY-MM-DD"
+
+
+  console.log(dadosDaAPI[0].data)
+
+  const agendamentoPassado = dadosDaAPI.filter((agenda) => agenda.data < getCurrentDate());
+  const agendamentoFuturo = dadosDaAPI.filter((agenda) => agenda.data > getCurrentDate());
 
   return (
 
@@ -54,10 +55,12 @@ const History = (dadosDaAPI) => {
       {agendamentoFuturo.length > 0 && (
         <div className="mb-8">
           <h3 className="text-lg font-semibold mb-2">Agendamentos Futuros:</h3>
-          {agendamentoFuturo.map((teste, index) => (
+          {agendamentoFuturo.map((agenda, index) => (
             <div key={index} className="bg-gray-200 p-4 mb-4 rounded">
-              <p>{`Data: ${teste.data.split('T')[0]}, Horário: ${teste.hora}:00`}</p>
-              <p>{`Serviço: ${teste.funcionario_funcao.funcao.nome_funcao}`}</p>
+              <p>{`Data: ${agenda.data}`}</p> 
+              <p>{`Horário: ${agenda.hora}`}</p>
+              <p>{`Funcionario: ${agenda.funcionario_funcao.funcionario.nome}`}</p>
+              <p>{`Serviço: ${agenda.funcionario_funcao.funcao.nome_funcao}`}</p>
               <p>Status: Pendente</p>
             </div>
           ))}
@@ -68,10 +71,11 @@ const History = (dadosDaAPI) => {
       {agendamentoPassado.length > 0 && (
         <div>
           <h3 className="text-lg font-semibold mb-2">Agendamentos Passados:</h3>
-          {agendamentoPassado.map((teste, index) => (
+          {agendamentoPassado.map((agenda, index) => (
             <div key={index} className="bg-gray-200 p-4 mb-4 rounded">
-              <p>{`Data: ${teste.data.split('T')[0]}, Horário: ${teste.hora}:00`}</p>
-              <p>{`Serviço: ${teste.funcionario_funcao.funcao.nome_funcao}`}</p>
+              <p>{`Data: ${new Date(agenda.data).toLocaleDateString("pt-br")}`}</p>
+              <p>{`Horário: ${agenda.hora}`}</p>
+              <p>{`Serviço: ${agenda.funcionario_funcao.funcao.nome_funcao}`}</p>
               <p>Status: Concluido</p>
             </div>
           ))}
@@ -101,7 +105,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   }
 
   try {
-    const response = await apiClient.get('/agendamento');
+    const response = await apiClient.get('/agendamento/cliente');
     const dadosDaAPI = response.data;
 
     return {

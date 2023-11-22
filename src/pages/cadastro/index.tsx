@@ -21,7 +21,7 @@ const CadastroCliente = () => {
 
       showSuccessAlert(response.data.sucess)
       await signInCliente({ email, senha });
-    } catch (error) {
+    } catch (error: any) {
       showErrorAlert(error.response.data.message);
     }
   };
