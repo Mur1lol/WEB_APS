@@ -1,4 +1,4 @@
-import { parseCookies } from 'nookies'
+import nookies, { parseCookies } from 'nookies'
 import { GetServerSideProps } from 'next'
 import { getAPIClient } from '../../services/axios'
 
@@ -65,7 +65,10 @@ const Appointment: React.FC<AppointmentProps> = ({
       default:
         return (
           <>
-            <p>ACESSO NEGADO!</p>
+          <div className="container mx-auto mt-8">
+            <h2 className="text-2xl font-bold mb-4">Agendamento</h2>
+            ACESSO NEGADO!
+            </div>
           </>
         )
     }
@@ -85,16 +88,9 @@ const Appointment: React.FC<AppointmentProps> = ({
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const apiClient = getAPIClient(ctx);
-  const { ['nextauth.token']: token } = parseCookies(ctx);
+  const { ['nextauth.token']: token } = parseCookies(ctx)
 
-  if (!token) {
-    return {
-      redirect: {
-        destination: '/login/cliente',
-        permanent: false,
-      }
-    }
-  }
+  
 
   try {
     const responseFuncao = await apiClient.get('/funcao');

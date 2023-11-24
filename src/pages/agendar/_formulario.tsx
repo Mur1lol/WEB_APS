@@ -133,7 +133,7 @@ const Formulario: React.FC<AppointmentProps> = ({
             disabled={!funcao}
           >
             <option value="" disabled>Selecione uma opção</option>
-            {data_funcionarios.filter((funcionario) => funcionario.funcao.id == funcao)?.map((employee: Funcionario_Funcao) => (
+            {data_funcionarios?.filter((funcionario) => funcionario.funcao.id == funcao)?.map((employee: Funcionario_Funcao) => (
               <option key={employee.id} value={employee.id}>{employee.funcionario.nome}</option>
             ))}
           </select>

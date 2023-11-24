@@ -24,7 +24,7 @@ export default function Home() {
                   Um salão exclusivo em Curitiba, especializado em tratamentos
                   naturais.
                 </p>
-                <a className="button" href="#">Agendar um horário</a>
+                <a className="button" href="/agendar">Agendar um horário</a>
               </div>
             </div>
           </section>

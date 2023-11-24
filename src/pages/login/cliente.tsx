@@ -89,7 +89,7 @@ export default function Home() {
               Ainda não tem uma conta?{' '}
               <Link
                 className='text-blue-500'
-                href={'/cadastro'}
+                href={'/cadastro/cliente'}
               >
                 Cadastre-se aqui
               </Link>

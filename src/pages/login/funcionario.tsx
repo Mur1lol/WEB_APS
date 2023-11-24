@@ -86,13 +86,7 @@ export default function Home() {
 
           <div className="mt-4">
             <p className="text-gray-700 text-sm">
-              Ainda não tem uma conta?{' '}
-              <Link
-                className='text-blue-500'
-                href={'/cadastro'}
-              >
-                Cadastre-se aqui
-              </Link>
+              Ainda não tem uma conta? Solicite a um admin
             </p>
             <p className="text-gray-700 text-sm mt-2">
               É um cliente?{' '}

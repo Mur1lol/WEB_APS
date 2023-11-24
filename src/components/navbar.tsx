@@ -18,19 +18,6 @@ const Navbar: React.FC = () => {
     setMenuAberto(false);
   };
 
-  useEffect(() => {
-    const handleCloseMenu = (event) => {
-      if (menuRef.current && !menuRef.current.contains(event.target)) {
-        setMenuAberto(false);
-      }
-    };
-
-    document.addEventListener('mousedown', handleCloseMenu);
-
-    return () => {
-      document.removeEventListener('mousedown', handleCloseMenu);
-    };
-  }, []);
 
   const renderUserOptions = () => {
     switch (user?.tipo) {
@@ -53,7 +40,7 @@ const Navbar: React.FC = () => {
       case 'admin':
         return (
           <>
-            <li><Link className='title' href={'/cadastrar/funcionario'}>Cadastrar Funcionario</Link></li>
+            <li><Link className='title' href={'/cadastro/funcionario'}>Cadastrar Funcionario</Link></li>
             <li><Link className='title' href={'/relatorio'}>Relatorio</Link></li>
           </>
         );

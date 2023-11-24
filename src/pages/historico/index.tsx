@@ -29,22 +29,22 @@ type Agendamentos = {
   dadosDaAPI: Agenda[]
 }
 
-const History: React.FC<Agendamentos> = ( {dadosDaAPI }) => {
+const History: React.FC<Agendamentos> = ({ dadosDaAPI }) => {
   // Simulação de dados de agendamentos (pode ser substituída por dados reais da sua aplicação)
 
-  const dataNormal = new Date()
-  const dataISO = dataNormal.toISOString().split('T')[0];
-  const dataBR = dataNormal.toLocaleDateString();
-  const dataBRISO = new Date(dataBR);
+  for (let i = 1; i < 2; i++) {
+    const dataNormal = new Date('2023-11-10')
+    const dataISO = dataNormal.toISOString().split('T')[0];
+    const dataBR = dataNormal.toLocaleDateString('en');
+    const dataBRISO = new Date(dataBR).toLocaleDateString('pt-br');
 
-  console.log('1: '+dataISO, '2: '+dataBR, dataBRISO)
+    console.log('DATA 1: ' + dataISO, 'DATA 2: ' + dataBR, 'DATA 3: ' + dataBRISO)
+  }
+
   const getCurrentDate = () => new Date().toISOString().split('T')[0] // Obtém a data atual no formato "YYYY-MM-DD"
 
-
-  console.log(dadosDaAPI[0].data)
-
-  const agendamentoPassado = dadosDaAPI.filter((agenda) => agenda.data < getCurrentDate());
-  const agendamentoFuturo = dadosDaAPI.filter((agenda) => agenda.data > getCurrentDate());
+  const agendamentoPassado = dadosDaAPI?.filter((agenda) => agenda.data < getCurrentDate());
+  const agendamentoFuturo = dadosDaAPI?.filter((agenda) => agenda.data >= getCurrentDate());
 
   return (
 
@@ -57,7 +57,7 @@ const History: React.FC<Agendamentos> = ( {dadosDaAPI }) => {
           <h3 className="text-lg font-semibold mb-2">Agendamentos Futuros:</h3>
           {agendamentoFuturo.map((agenda, index) => (
             <div key={index} className="bg-gray-200 p-4 mb-4 rounded">
-              <p>{`Data: ${agenda.data}`}</p> 
+              <p>{`Data: ${agenda.data.split('-')[2]}/${agenda.data.split('-')[1]}/${agenda.data.split('-')[0]}`}</p>
               <p>{`Horário: ${agenda.hora}`}</p>
               <p>{`Funcionario: ${agenda.funcionario_funcao.funcionario.nome}`}</p>
               <p>{`Serviço: ${agenda.funcionario_funcao.funcao.nome_funcao}`}</p>

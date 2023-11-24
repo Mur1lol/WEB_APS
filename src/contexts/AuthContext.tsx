@@ -32,23 +32,31 @@ interface AuthProviderProps {
   children: ReactNode;
 }
 
-const segredo = process.env.NEXT_PUBLIC_JWT_SECRET;
-
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
+  const [count, setCount] = useState(0);
+
+  const expire = 60*60*1; // 1 hour = 3600 seconds
 
   useEffect(() => {
     const { 'nextauth.token': token } = parseCookies()
-    if (token) {
-      try {
-        const user: User = jwtDecode(token);
-        setUser(user);
-      }
-      catch (error) {
-        setUser(null);
-      }
+    
+    try {
+      const user: User = jwtDecode(token);
+      setUser(user);
     }
-  }, []);
+    catch (error) {
+      setUser(null);
+      destroyCookie(undefined, 'nextauth.token');
+    }
+   
+    // Adicionando intervalo de 5 minutos (1000 = 1 segundo)
+    const interval = setInterval(() => {
+      setCount(count + 1);
+    }, expire * 1000);
+
+    return () => clearInterval(interval);
+  }, [count]);
 
   async function signInCliente({ email, senha }: SignInData) {
     await api.post('cliente/login', {
@@ -59,7 +67,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
       destroyCookie(undefined, 'nextauth.token');
       setCookie(undefined, 'nextauth.token', token, {
-        maxAge: 60 * 60 * 1, // 1 hour
+        maxAge: expire, 
       });
 
       setUser(response.data.dados.cliente);
@@ -78,14 +86,16 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       email,
       senha
     }).then((response) => {
+      const token = response.data.dados.token;
+
       destroyCookie(undefined, 'nextauth.token');
-      setCookie(undefined, 'nextauth.token', response.data.dados.token, {
+      setCookie(undefined, 'nextauth.token', token, {
         maxAge: 60 * 60 * 1, // 1 hour
       });
 
       setUser(response.data.dados.funcionario);
 
-      api.defaults.headers['Authorization'] = `Bearer ${response.data.dados.token}`;
+      api.defaults.headers['Authorization'] = `Bearer ${token}`;
 
       Router.push('/');
     }).catch((error) => {
