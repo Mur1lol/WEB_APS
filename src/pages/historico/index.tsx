@@ -7,7 +7,7 @@ import { getAPIClient } from '@/services/axios';
 type Agenda = {
   id: number;
   data: string;
-  hora: number;
+  hora: string;
   cliente: {
     id: number;
     nome: string;
@@ -41,10 +41,16 @@ const History: React.FC<Agendamentos> = ({ dadosDaAPI }) => {
     console.log('DATA 1: ' + dataISO, 'DATA 2: ' + dataBR, 'DATA 3: ' + dataBRISO)
   }
 
-  const getCurrentDate = () => new Date().toISOString().split('T')[0] // Obtém a data atual no formato "YYYY-MM-DD"
+  const date = new Date();
+  const getCurrentDate = () => date.toISOString().split('T')[0] // Obtém a data atual no formato "YYYY-MM-DD"
 
-  const agendamentoPassado = dadosDaAPI?.filter((agenda) => agenda.data < getCurrentDate());
-  const agendamentoFuturo = dadosDaAPI?.filter((agenda) => agenda.data >= getCurrentDate());
+  console.log(dadosDaAPI[0].hora, date.getHours()+':'+date.getMinutes())
+  const agendamentoPassado = dadosDaAPI?.filter((agenda) => 
+    agenda.data < getCurrentDate() || ( agenda.data == getCurrentDate() && agenda.hora < date.getHours()+':'+date.getMinutes())
+  );
+  const agendamentoFuturo = dadosDaAPI?.filter((agenda) => 
+    agenda.data > getCurrentDate() || (agenda.data == getCurrentDate() && agenda.hora >= date.getHours()+':'+date.getMinutes())
+  );
 
   return (
 
