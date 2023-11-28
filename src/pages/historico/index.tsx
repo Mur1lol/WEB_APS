@@ -35,7 +35,6 @@ const History: React.FC<Agendamentos> = ({ dadosDaAPI }) => {
   const date = new Date();
   const getCurrentDate = () => date.toISOString().split('T')[0] // Obtém a data atual no formato "YYYY-MM-DD"
 
-  console.log(getCurrentDate(), dadosDaAPI[0].hora, date.getHours()+':'+date.getMinutes())
   const agendamentoPassado = dadosDaAPI?.filter((agenda) => 
     agenda.data < getCurrentDate() || ( agenda.data == getCurrentDate() && agenda.hora < date.toTimeString().slice(0,5))
   );
