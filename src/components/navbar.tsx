@@ -54,14 +54,14 @@ const Navbar: React.FC = () => {
       <div className="container mx-auto flex items-center justify-between">
         <header id="header" className="scroll">
           <nav className="container">
-            <a className="logo" href="/">beauty<span>salon</span>.</a>
+            <Link className="logo" href="/">beauty<span>salon</span>.</Link>
             <div className="menu">
               <ul className="grid">
-                <li><a className="title" href="/#home">Início</a></li>
-                <li><a className="title" href="/#about">Sobre</a></li>
-                <li><a className="title" href="/#services">Serviços</a></li>
-                <li><a className="title" href="/#testimonials">Depoimentos</a></li>
-                <li><a className="title" href="/#contact">Contato</a></li>
+                <li><Link className="title" href="/#home">Início</Link></li>
+                <li><Link className="title" href="/#about">Sobre</Link></li>
+                <li><Link className="title" href="/#services">Serviços</Link></li>
+                <li><Link className="title" href="/#testimonials">Depoimentos</Link></li>
+                <li><Link className="title" href="/#contact">Contato</Link></li>
 
                 {renderUserOptions()}
 

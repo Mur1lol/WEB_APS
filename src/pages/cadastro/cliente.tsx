@@ -4,6 +4,7 @@ import { useAuth } from '@/contexts/AuthContext';
 import { showErrorAlert, showSuccessAlert } from '@/components/swal';
 import Head from 'next/head';
 import Router from 'next/router'
+import Link from 'next/link';
 
 const CadastroCliente = () => {
   const [nome, setNome] = useState('');
@@ -74,9 +75,9 @@ const CadastroCliente = () => {
           <div className="mt-4">
             <p className="text-gray-700 text-sm">
               Já possui uma conta?{' '}
-              <a href="/login/cliente" className="text-blue-500">
+              <Link href="/login/cliente" className="text-blue-500">
                 Faça login aqui
-              </a>
+              </Link>
             </p>
           </div>
         </div>

@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import Head from 'next/head';
+import Link from 'next/link';
 
 export default function Home() {
   return (
@@ -13,7 +14,7 @@ export default function Home() {
           <section className="section" id="home">
             <div className="container grid">
               <div className="image">
-                <img
+                <Image
                   src="https://images.unsplash.com/photo-1562322140-8baeececf3df?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8aGFpcmRyZXNzZXJ8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60"
                   alt="Mulher sorrindo penteando outra mulher"
                 />
@@ -24,7 +25,7 @@ export default function Home() {
                   Um salão exclusivo em Curitiba, especializado em tratamentos
                   naturais.
                 </p>
-                <a className="button" href="/agendar">Agendar um horário</a>
+                <Link className="button" href="/agendar">Agendar um horário</Link>
               </div>
             </div>
           </section>
@@ -34,7 +35,7 @@ export default function Home() {
           <section className="section" id="about">
             <div className="container grid">
               <div className="image">
-                <img
+                <Image
                   src="https://images.unsplash.com/photo-1559599101-f09722fb4948?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8aGFpcmRyZXNzZXJ8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60"
                   alt="3 mulheres sorrindo"
                 />
@@ -99,7 +100,7 @@ export default function Home() {
                         atque aliquam. Placeat hic corrupti modi quod!
                       </p>
                       <cite>
-                        <img
+                        <Image
                           src="https://randomuser.me/api/portraits/women/19.jpg"
                           alt="Foto de Wanessa Souza"
                         />
@@ -118,7 +119,7 @@ export default function Home() {
                         atque aliquam. Placeat hic corrupti modi quod!
                       </p>
                       <cite>
-                        <img
+                        <Image
                           src="https://randomuser.me/api/portraits/women/60.jpg"
                           alt="Foto de Franciele Venega"
                         />
@@ -137,7 +138,7 @@ export default function Home() {
                         atque aliquam. Placeat hic corrupti modi quod!
                       </p>
                       <cite>
-                        <img
+                        <Image
                           src="https://randomuser.me/api/portraits/women/26.jpg"
                           alt="Foto de Valeska Fabris"
                         />

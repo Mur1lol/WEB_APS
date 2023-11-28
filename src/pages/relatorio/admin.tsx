@@ -32,11 +32,11 @@ const Relatorios: React.FC<Agendamentos> = ({ dadosDaAPI }) => {
 
   const [dataInicio, setDataInicio] = useState('');
   const [dataFim, setDataFim] = useState('');
-  const [resultados, setResultados] = useState([]);
+  const [resultados, setResultados] = useState<Agenda[]>([]);
 
-  const [cabeleireiro, setCabeleireiro] = useState([]);
-  const [manicure, setManicure] = useState([]);
-  const [pedicure, setPedicure] = useState([]);
+  const [cabeleireiro, setCabeleireiro] = useState<Agenda[]>([]);
+  const [manicure, setManicure] = useState<Agenda[]>([]);
+  const [pedicure, setPedicure] = useState<Agenda[]>([]);
 
   const handleFiltrar = () => {
     const qtdeAgendamentos = dadosDaAPI?.filter((agenda) =>

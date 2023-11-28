@@ -32,11 +32,13 @@ interface AuthProviderProps {
   children: ReactNode;
 }
 
+const expire = 60*60*1; // 1 hour = 3600 seconds
+
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
   const [count, setCount] = useState(0);
 
-  const expire = 60*60*1; // 1 hour = 3600 seconds
+  
 
   useEffect(() => {
     const { 'nextauth.token': token } = parseCookies()
