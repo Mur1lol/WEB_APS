@@ -2,6 +2,12 @@ import Image from 'next/image'
 import Head from 'next/head';
 import Link from 'next/link';
 
+import photo1 from '../assets/images/photo1.png';
+import photo2 from '../assets/images/photo2.png';
+import photo3 from '../assets/images/photo3.jpg';
+import photo4 from '../assets/images/photo4.jpg';
+import photo5 from '../assets/images/photo5.jpg';
+
 export default function Home() {
   return (
     <>
@@ -15,7 +21,9 @@ export default function Home() {
             <div className="container grid">
               <div className="image">
                 <Image
-                  src="https://images.unsplash.com/photo-1562322140-8baeececf3df?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8aGFpcmRyZXNzZXJ8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60"
+                  src={photo1}
+                  width={500}
+                  height={500}
                   alt="Mulher sorrindo penteando outra mulher"
                 />
               </div>
@@ -36,7 +44,9 @@ export default function Home() {
             <div className="container grid">
               <div className="image">
                 <Image
-                  src="https://images.unsplash.com/photo-1559599101-f09722fb4948?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8aGFpcmRyZXNzZXJ8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60"
+                  src={photo2}
+                  width={500}
+                  height={500}
                   alt="3 mulheres sorrindo"
                 />
               </div>
@@ -101,7 +111,9 @@ export default function Home() {
                       </p>
                       <cite>
                         <Image
-                          src="https://randomuser.me/api/portraits/women/19.jpg"
+                          src={photo3}
+                          width={500}
+                          height={500}
                           alt="Foto de Wanessa Souza"
                         />
                         Wanessa Souza
@@ -120,7 +132,9 @@ export default function Home() {
                       </p>
                       <cite>
                         <Image
-                          src="https://randomuser.me/api/portraits/women/60.jpg"
+                          src={photo4}
+                          width={500}
+                          height={500}
                           alt="Foto de Franciele Venega"
                         />
                         Franciele Venega
@@ -139,7 +153,9 @@ export default function Home() {
                       </p>
                       <cite>
                         <Image
-                          src="https://randomuser.me/api/portraits/women/26.jpg"
+                          src={photo5}
+                          width={500}
+                          height={500}
                           alt="Foto de Valeska Fabris"
                         />
                         Valeska Fabris
@@ -162,22 +178,14 @@ export default function Home() {
                   Entre em contato com a Beautysalon, queremos tirar suas dúvidas,
                   ouvir suas críticas e sugestões.
                 </p>
-                <a
+                <Link
                   href="https://api.whatsapp.com/send?phone=+5563992887396&text=Olá!, gostaria de agendar um horário"
                   className="button"
                   target="_blank"
                 >
                   <i className="icon-whatsapp"></i>Entrar em contato
-                </a>
+                </Link>
               </div>
-            </div>
-
-            <div className="links">
-              <ul className="grid">
-                <li><i className="icon-phone"></i>63 992887396</li>
-                <li><i className="icon-map-pin"></i>UTFPR</li>
-                <li><i className="icon-mail"></i>sebastiao.araujo_2@hotmail.com</li>
-              </ul>
             </div>
           </section>
 
@@ -188,33 +196,11 @@ export default function Home() {
           <div className="container grid">
             <div className="brand">
               <a className="logo logo-alt" href="#home">beauty<span>salon</span>.</a>
-              <p>©2021 BeautySalon.</p>
+              <p>©2023 BeautySalon.</p>
               <p>Todos os direitos reservados.</p>
-            </div>
-
-            <div className="social">
-              <a
-                href="https://www.instagram.com/sebastiaoaraujo10/"
-                target="_blank"
-              >
-                <i className="icon-instagram"></i>
-              </a>
-              <a href="https://www.facebook.com/" target="_blank">
-                <i className="icon-facebook"></i>
-              </a>
-              <a href="https://www.youtube.com/" target="_blank">
-                <i className="icon-youtube"></i>
-              </a>
             </div>
           </div>
         </footer>
-
-        {/* 
-        <a href="#home" className="back-to-top"><i className="icon-arrow-up-circle"></i></a>
-        <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-        <script src="https://unpkg.com/scrollreveal"></script>
-        <script src="main.js"></script> 
-        */}
       </div>
     </>
   );
