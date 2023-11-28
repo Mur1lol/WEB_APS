@@ -3,6 +3,7 @@ import { getAPIClient } from '@/services/axios';
 import { useAuth } from '@/contexts/AuthContext';
 import { showErrorAlert, showSuccessAlert } from '@/components/swal';
 import Head from 'next/head';
+import Router from 'next/router'
 
 const CadastroCliente = () => {
   const [nome, setNome] = useState('');
@@ -21,7 +22,7 @@ const CadastroCliente = () => {
       });
 
       showSuccessAlert(response.data.sucess)
-      await signInCliente({ email, senha });
+      Router.push('/login/cliente');
     } catch (error: any) {
       showErrorAlert(error.response.data.message);
     }

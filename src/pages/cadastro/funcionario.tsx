@@ -32,7 +32,6 @@ const CadastroCliente: React.FC<FuncaoProps> = ({ data_funcoes }) => {
         senha,
       });
 
-      console.log(funcoesSelecionadas)
       for(let i=0; i<funcoesSelecionadas.length; i++) {
         await api.post('funci_funcao', {
           id_funcionario: response.data.dados.id,
